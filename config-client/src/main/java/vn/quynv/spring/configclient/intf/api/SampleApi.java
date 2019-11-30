@@ -13,9 +13,23 @@ public class SampleApi {
     @Value("${sampleApi.message}")
     private String message;
 
-    @GetMapping("/")
+    @GetMapping("")
     @ResponseBody
-    public String getRequest(){
-        return message;
+    public ApiResponse getRequest(){
+        return new ApiResponse().setMessage(message);
+    }
+
+    class ApiResponse{
+
+        private String message;
+
+        public String getMessage() {
+            return message;
+        }
+
+        public ApiResponse setMessage(String message) {
+            this.message = message;
+            return this;
+        }
     }
 }
